@@ -15,7 +15,7 @@ A language server for unocss
 npm i unocss-language-server -g
 ```
 
-### Usage
+## Usage
 
 You can refer to [my nvim configuration](https://github.com/xna00/nvim)
 ```lua
