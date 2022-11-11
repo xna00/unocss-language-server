@@ -17,7 +17,7 @@ npm i unocss-language-server -g
 
 ### Usage
 
-You can refer to [my configuration](https://github.com/xna00/nvim)
+You can refer to [my nvim configuration](https://github.com/xna00/nvim)
 ```lua
 local util = require 'lspconfig.util'
 local configs = require 'lspconfig.configs'
