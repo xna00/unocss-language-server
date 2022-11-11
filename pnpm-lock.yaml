@@ -10,113 +10,87 @@ specifiers:
   vscode-languageserver-textdocument: ^1.0.4
 
 dependencies:
-  '@unocss/autocomplete': registry.npmmirror.com/@unocss/autocomplete/0.46.4
-  '@unocss/core': registry.npmmirror.com/@unocss/core/0.46.4
-  '@unocss/preset-uno': registry.npmmirror.com/@unocss/preset-uno/0.46.4
-  vscode-languageserver: registry.npmmirror.com/vscode-languageserver/7.0.0
-  vscode-languageserver-textdocument: registry.npmmirror.com/vscode-languageserver-textdocument/1.0.7
+  '@unocss/autocomplete': 0.46.4
+  '@unocss/core': 0.46.4
+  '@unocss/preset-uno': 0.46.4
+  vscode-languageserver: 7.0.0
+  vscode-languageserver-textdocument: 1.0.7
 
 devDependencies:
-  '@types/node': registry.npmmirror.com/@types/node/16.18.3
-  typescript: registry.npmmirror.com/typescript/4.8.4
+  '@types/node': 16.18.3
+  typescript: 4.8.4
 
 packages:
 
-  registry.npmmirror.com/@types/node/16.18.3:
-    resolution: {integrity: sha512-jh6m0QUhIRcZpNv7Z/rpN+ZWXOicUUQbSoWks7Htkbb9IjFQj4kzcX/xFCkjstCj5flMsN8FiSvt+q+Tcs4Llg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-16.18.3.tgz}
-    name: '@types/node'
-    version: 16.18.3
+  /@types/node/16.18.3:
+    resolution: {integrity: sha512-jh6m0QUhIRcZpNv7Z/rpN+ZWXOicUUQbSoWks7Htkbb9IjFQj4kzcX/xFCkjstCj5flMsN8FiSvt+q+Tcs4Llg==}
     dev: true
 
-  registry.npmmirror.com/@unocss/autocomplete/0.46.4:
-    resolution: {integrity: sha512-CJqvll+cFoE01lh7SFnh0rLWY/+Z6k3esgdS3Lju4p50r/mpjOuBgQ4jB35EPbzNahnZRUwTXjh07+dz8NjKsQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/autocomplete/-/autocomplete-0.46.4.tgz}
-    name: '@unocss/autocomplete'
-    version: 0.46.4
+  /@unocss/autocomplete/0.46.4:
+    resolution: {integrity: sha512-CJqvll+cFoE01lh7SFnh0rLWY/+Z6k3esgdS3Lju4p50r/mpjOuBgQ4jB35EPbzNahnZRUwTXjh07+dz8NjKsQ==}
     dependencies:
-      lru-cache: registry.npmmirror.com/lru-cache/7.14.1
+      lru-cache: 7.14.1
     dev: false
 
-  registry.npmmirror.com/@unocss/core/0.46.4:
-    resolution: {integrity: sha512-pLWJ/QgRW1DT1m0Y/7IyX7tURi/1fJ0T17jygH+iMGfwOJVFigkqxstTbWknuVFqc1rCH+pO20bI5k0r3xvIPA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/core/-/core-0.46.4.tgz}
-    name: '@unocss/core'
-    version: 0.46.4
+  /@unocss/core/0.46.4:
+    resolution: {integrity: sha512-pLWJ/QgRW1DT1m0Y/7IyX7tURi/1fJ0T17jygH+iMGfwOJVFigkqxstTbWknuVFqc1rCH+pO20bI5k0r3xvIPA==}
     dev: false
 
-  registry.npmmirror.com/@unocss/preset-mini/0.46.4:
-    resolution: {integrity: sha512-zDuFe+F83k6qOVXcncAZdjRaWIGrME8pt7k2PeCFmnjMyEpHHAISRItfa4sIu4dVhhYRNIuymldLdss5jmCCoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/preset-mini/-/preset-mini-0.46.4.tgz}
-    name: '@unocss/preset-mini'
-    version: 0.46.4
+  /@unocss/preset-mini/0.46.4:
+    resolution: {integrity: sha512-zDuFe+F83k6qOVXcncAZdjRaWIGrME8pt7k2PeCFmnjMyEpHHAISRItfa4sIu4dVhhYRNIuymldLdss5jmCCoQ==}
     dependencies:
-      '@unocss/core': registry.npmmirror.com/@unocss/core/0.46.4
+      '@unocss/core': 0.46.4
     dev: false
 
-  registry.npmmirror.com/@unocss/preset-uno/0.46.4:
-    resolution: {integrity: sha512-6k1Icc6DUPgQNQut9ZGG+BOVvZ60rhApLEY1CiJaxRDNnE1fx5mbWtuQT/Uwl5osMCRgfbuFkCVdo1Qt2QwvVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/preset-uno/-/preset-uno-0.46.4.tgz}
-    name: '@unocss/preset-uno'
-    version: 0.46.4
+  /@unocss/preset-uno/0.46.4:
+    resolution: {integrity: sha512-6k1Icc6DUPgQNQut9ZGG+BOVvZ60rhApLEY1CiJaxRDNnE1fx5mbWtuQT/Uwl5osMCRgfbuFkCVdo1Qt2QwvVw==}
     dependencies:
-      '@unocss/core': registry.npmmirror.com/@unocss/core/0.46.4
-      '@unocss/preset-mini': registry.npmmirror.com/@unocss/preset-mini/0.46.4
-      '@unocss/preset-wind': registry.npmmirror.com/@unocss/preset-wind/0.46.4
+      '@unocss/core': 0.46.4
+      '@unocss/preset-mini': 0.46.4
+      '@unocss/preset-wind': 0.46.4
     dev: false
 
-  registry.npmmirror.com/@unocss/preset-wind/0.46.4:
-    resolution: {integrity: sha512-J3+pT5oaVu0HKRdHgeTqyazQs/lpB5lVUpDjw5nRKmSGcWCRe2BG6IptM6IFGBweMWK0SWwDxgefqsb4qIyrlA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/preset-wind/-/preset-wind-0.46.4.tgz}
-    name: '@unocss/preset-wind'
-    version: 0.46.4
+  /@unocss/preset-wind/0.46.4:
+    resolution: {integrity: sha512-J3+pT5oaVu0HKRdHgeTqyazQs/lpB5lVUpDjw5nRKmSGcWCRe2BG6IptM6IFGBweMWK0SWwDxgefqsb4qIyrlA==}
     dependencies:
-      '@unocss/core': registry.npmmirror.com/@unocss/core/0.46.4
-      '@unocss/preset-mini': registry.npmmirror.com/@unocss/preset-mini/0.46.4
+      '@unocss/core': 0.46.4
+      '@unocss/preset-mini': 0.46.4
     dev: false
 
-  registry.npmmirror.com/lru-cache/7.14.1:
-    resolution: {integrity: sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lru-cache/-/lru-cache-7.14.1.tgz}
-    name: lru-cache
-    version: 7.14.1
+  /lru-cache/7.14.1:
+    resolution: {integrity: sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==}
     engines: {node: '>=12'}
     dev: false
 
-  registry.npmmirror.com/typescript/4.8.4:
-    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/-/typescript-4.8.4.tgz}
-    name: typescript
-    version: 4.8.4
+  /typescript/4.8.4:
+    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
 
-  registry.npmmirror.com/vscode-jsonrpc/6.0.0:
-    resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vscode-jsonrpc/-/vscode-jsonrpc-6.0.0.tgz}
-    name: vscode-jsonrpc
-    version: 6.0.0
+  /vscode-jsonrpc/6.0.0:
+    resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==}
     engines: {node: '>=8.0.0 || >=10.0.0'}
     dev: false
 
-  registry.npmmirror.com/vscode-languageserver-protocol/3.16.0:
-    resolution: {integrity: sha512-sdeUoAawceQdgIfTI+sdcwkiK2KU+2cbEYA0agzM2uqaUy2UpnnGHtWTHVEtS0ES4zHU0eMFRGN+oQgDxlD66A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.16.0.tgz}
-    name: vscode-languageserver-protocol
-    version: 3.16.0
+  /vscode-languageserver-protocol/3.16.0:
+    resolution: {integrity: sha512-sdeUoAawceQdgIfTI+sdcwkiK2KU+2cbEYA0agzM2uqaUy2UpnnGHtWTHVEtS0ES4zHU0eMFRGN+oQgDxlD66A==}
     dependencies:
-      vscode-jsonrpc: registry.npmmirror.com/vscode-jsonrpc/6.0.0
-      vscode-languageserver-types: registry.npmmirror.com/vscode-languageserver-types/3.16.0
+      vscode-jsonrpc: 6.0.0
+      vscode-languageserver-types: 3.16.0
     dev: false
 
-  registry.npmmirror.com/vscode-languageserver-textdocument/1.0.7:
-    resolution: {integrity: sha512-bFJH7UQxlXT8kKeyiyu41r22jCZXG8kuuVVA33OEJn1diWOZK5n8zBSPZFHVBOu8kXZ6h0LIRhf5UnCo61J4Hg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.7.tgz}
-    name: vscode-languageserver-textdocument
-    version: 1.0.7
+  /vscode-languageserver-textdocument/1.0.7:
+    resolution: {integrity: sha512-bFJH7UQxlXT8kKeyiyu41r22jCZXG8kuuVVA33OEJn1diWOZK5n8zBSPZFHVBOu8kXZ6h0LIRhf5UnCo61J4Hg==}
     dev: false
 
-  registry.npmmirror.com/vscode-languageserver-types/3.16.0:
-    resolution: {integrity: sha512-k8luDIWJWyenLc5ToFQQMaSrqCHiLwyKPHKPQZ5zz21vM+vIVUSvsRpcbiECH4WR88K2XZqc4ScRcZ7nk/jbeA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vscode-languageserver-types/-/vscode-languageserver-types-3.16.0.tgz}
-    name: vscode-languageserver-types
-    version: 3.16.0
+  /vscode-languageserver-types/3.16.0:
+    resolution: {integrity: sha512-k8luDIWJWyenLc5ToFQQMaSrqCHiLwyKPHKPQZ5zz21vM+vIVUSvsRpcbiECH4WR88K2XZqc4ScRcZ7nk/jbeA==}
     dev: false
 
-  registry.npmmirror.com/vscode-languageserver/7.0.0:
-    resolution: {integrity: sha512-60HTx5ID+fLRcgdHfmz0LDZAXYEV68fzwG0JWwEPBode9NuMYTIxuYXPg4ngO8i8+Ou0lM7y6GzaYWbiDL0drw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vscode-languageserver/-/vscode-languageserver-7.0.0.tgz}
-    name: vscode-languageserver
-    version: 7.0.0
+  /vscode-languageserver/7.0.0:
+    resolution: {integrity: sha512-60HTx5ID+fLRcgdHfmz0LDZAXYEV68fzwG0JWwEPBode9NuMYTIxuYXPg4ngO8i8+Ou0lM7y6GzaYWbiDL0drw==}
     hasBin: true
     dependencies:
-      vscode-languageserver-protocol: registry.npmmirror.com/vscode-languageserver-protocol/3.16.0
+      vscode-languageserver-protocol: 3.16.0
     dev: false
