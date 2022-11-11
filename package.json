@@ -3,12 +3,14 @@
 	"description": "unocss language server",
 	"author": "xna00",
 	"license": "MIT",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"categories": [],
 	"keywords": [],
-	"files": ["./out"],
+	"files": ["out", "bin"],
 	"main": "./out/server.js",
-	"bin": "./bin/index.js",
+	"bin": {
+		"unocss-language-server": "./bin/index.js"
+	},
 	"scripts": {
 		"compile": "tsc && cd client && tsc"
 	},
