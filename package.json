@@ -6,38 +6,11 @@
 	"version": "0.0.1",
 	"categories": [],
 	"keywords": [],
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"main": "./client/out/extension",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "Example configuration",
-			"properties": {
-				"languageServerExample.maxNumberOfProblems": {
-					"scope": "resource",
-					"type": "number",
-					"default": 100,
-					"description": "Controls the maximum number of problems produced by the server."
-				},
-				"languageServerExample.trace.server": {
-					"scope": "window",
-					"type": "string",
-					"enum": [
-						"off",
-						"messages",
-						"verbose"
-					],
-					"default": "off",
-					"description": "Traces the communication between VS Code and the language server."
-				}
-			}
-		}
-	},
+	"files": ["./out"],
+	"main": "./out/server.js",
+	"bin": "./out/server.js",
 	"scripts": {
-		"compile": "tsc && cd client && tsc",
-		"watch": "tsc -b -w"
+		"compile": "tsc && cd client && tsc"
 	},
 	"devDependencies": {
 		"@types/node": "^16.11.7",
