@@ -8,7 +8,7 @@
 	"keywords": [],
 	"files": ["./out"],
 	"main": "./out/server.js",
-	"bin": "./out/server.js",
+	"bin": "./bin/index.js",
 	"scripts": {
 		"compile": "tsc && cd client && tsc"
 	},
