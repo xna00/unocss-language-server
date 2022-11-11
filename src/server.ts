@@ -1,8 +1,6 @@
 import {
   createConnection,
   TextDocuments,
-  Diagnostic,
-  DiagnosticSeverity,
   ProposedFeatures,
   InitializeParams,
   DidChangeConfigurationNotification,
@@ -106,25 +104,7 @@ connection.onDidChangeConfiguration((change) => {
       (change.settings.languageServerExample || defaultSettings)
     );
   }
-
-  // Revalidate all open text documents
-  // documents.all().forEach(validateTextDocument);
 });
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-  if (!hasConfigurationCapability) {
-    return Promise.resolve(globalSettings);
-  }
-  let result = documentSettings.get(resource);
-  if (!result) {
-    result = connection.workspace.getConfiguration({
-      scopeUri: resource,
-      section: "languageServerExample",
-    });
-    documentSettings.set(resource, result);
-  }
-  return result;
-}
 
 // Only keep settings for open documents
 documents.onDidClose((e) => {
@@ -134,55 +114,7 @@ documents.onDidClose((e) => {
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent((change) => {
-  // validateTextDocument(change.document);
 });
-
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-  // In this simple example we get the settings for every validate run.
-  const settings = await getDocumentSettings(textDocument.uri);
-
-  // The validator creates diagnostics for all uppercase words length 2 and more
-  const text = textDocument.getText();
-  const pattern = /\b[A-Z]{2,}\b/g;
-  let m: RegExpExecArray | null;
-
-  let problems = 0;
-  const diagnostics: Diagnostic[] = [];
-  while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-    problems++;
-    const diagnostic: Diagnostic = {
-      severity: DiagnosticSeverity.Hint,
-      range: {
-        start: textDocument.positionAt(m.index),
-        end: textDocument.positionAt(m.index + m[0].length),
-      },
-      message: `${m[0]} is all uppercase.`,
-      source: "ex",
-    };
-    if (hasDiagnosticRelatedInformationCapability) {
-      diagnostic.relatedInformation = [
-        {
-          location: {
-            uri: textDocument.uri,
-            range: Object.assign({}, diagnostic.range),
-          },
-          message: "Spelling matters",
-        },
-        {
-          location: {
-            uri: textDocument.uri,
-            range: Object.assign({}, diagnostic.range),
-          },
-          message: "Particularly for names",
-        },
-      ];
-    }
-    diagnostics.push(diagnostic);
-  }
-
-  // Send the computed diagnostics to VSCode.
-  connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-}
 
 connection.onDidChangeWatchedFiles((_change) => {
   // Monitored files have change in VSCode
@@ -247,35 +179,6 @@ connection.onHover(async (params): Promise<Hover> => {
   return {
     contents: css && `\`\`\`css\n${css}\n\`\`\``,
   };
-});
-
-connection.onDocumentHighlight((...params) => {
-  return [
-    {
-      range: Range.create(
-        { line: 0, character: 0 },
-        { line: 0, character: 10 }
-      ),
-    },
-  ];
-});
-
-connection.onDocumentColor(async (params) => {
-  const doc = documents.get(params.textDocument.uri);
-  const content = doc.getText();
-  const ret = [...content.matchAll(/text/g)].map((m) => ({
-    range: Range.create(
-      doc.positionAt(m.index),
-      doc.positionAt(m.index + m[0].length)
-    ),
-    color: {
-      red: 0.5,
-      green: 0,
-      blue: 0,
-      alpha: 1,
-    },
-  }));
-  return ret;
 });
 
 // Make the text document manager listen on the connection
