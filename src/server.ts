@@ -108,7 +108,7 @@ connection.onDidChangeConfiguration((change) => {
   }
 
   // Revalidate all open text documents
-  documents.all().forEach(validateTextDocument);
+  // documents.all().forEach(validateTextDocument);
 });
 
 function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
@@ -134,7 +134,7 @@ documents.onDidClose((e) => {
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent((change) => {
-  validateTextDocument(change.document);
+  // validateTextDocument(change.document);
 });
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
@@ -231,10 +231,10 @@ connection.onCompletionResolve(
   async (item: CompletionItem): Promise<CompletionItem> => {
     const result = await resolveCSS(item);
     item.detail = result.css;
-    item.documentation = {
-      kind: "markdown",
-      value: `[https://uno.antfu.me/?s=${item.label}](https://uno.antfu.me/?s=${item.label})`,
-    };
+    //item.documentation = {
+    //kind: "markdown",
+    //value: `[https://uno.antfu.me/?s=${item.label}](https://uno.antfu.me/?s=${item.label})`,
+    //};
     return item;
   }
 );
