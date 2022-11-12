@@ -8,6 +8,7 @@ A language server for unocss
 
 * Simple completion
 * Hover
+* Loading config from `root dir`
 
 ## Install
 
@@ -43,7 +44,6 @@ configs['unocss'] = { default_config = {
 ```
 
 ## TODO
-- [ ] Reading config from `root_dir`
 - [ ] Highlight matched classes
 
 ## Related information
