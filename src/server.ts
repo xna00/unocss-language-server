@@ -14,7 +14,12 @@ import {
 } from "vscode-languageserver/node";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { getComplete, resolveCSS, resolveCSSByOffset } from "./service";
+import {
+  getComplete,
+  resolveCSS,
+  resolveCSSByOffset,
+  resolveConfig,
+} from "./service";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -28,6 +33,11 @@ let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
+  const roorDir = params.workspaceFolders[0].name;
+  if (roorDir) {
+    resolveConfig(roorDir);
+  }
+  
   const capabilities = params.capabilities;
 
   // Does the client support the `workspace/configuration` request?
@@ -113,8 +123,7 @@ documents.onDidClose((e) => {
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
-documents.onDidChangeContent((change) => {
-});
+documents.onDidChangeContent((change) => {});
 
 connection.onDidChangeWatchedFiles((_change) => {
   // Monitored files have change in VSCode

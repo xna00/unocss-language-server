@@ -3,16 +3,20 @@ lockfileVersion: 5.4
 specifiers:
   '@types/node': ^16.11.7
   '@unocss/autocomplete': ^0.46.4
+  '@unocss/config': ^0.46.4
   '@unocss/core': ^0.46.4
   '@unocss/preset-uno': ^0.46.4
   typescript: ^4.8.4
+  unconfig: ^0.3.7
   vscode-languageserver: ^7.0.0
   vscode-languageserver-textdocument: ^1.0.4
 
 dependencies:
   '@unocss/autocomplete': 0.46.4
+  '@unocss/config': 0.46.4
   '@unocss/core': 0.46.4
   '@unocss/preset-uno': 0.46.4
+  unconfig: 0.3.7
   vscode-languageserver: 7.0.0
   vscode-languageserver-textdocument: 1.0.7
 
@@ -22,6 +26,10 @@ devDependencies:
 
 packages:
 
+  /@antfu/utils/0.5.2:
+    resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}
+    dev: false
+
   /@types/node/16.18.3:
     resolution: {integrity: sha512-jh6m0QUhIRcZpNv7Z/rpN+ZWXOicUUQbSoWks7Htkbb9IjFQj4kzcX/xFCkjstCj5flMsN8FiSvt+q+Tcs4Llg==}
     dev: true
@@ -30,6 +38,14 @@ packages:
     resolution: {integrity: sha512-CJqvll+cFoE01lh7SFnh0rLWY/+Z6k3esgdS3Lju4p50r/mpjOuBgQ4jB35EPbzNahnZRUwTXjh07+dz8NjKsQ==}
     dependencies:
       lru-cache: 7.14.1
+    dev: false
+
+  /@unocss/config/0.46.4:
+    resolution: {integrity: sha512-EN/4wn+RZpbWAei40osHTMfAaLGh1TmoyH2pypSdKLV17PFWkXu4hmcl4lHUl6+gHigL6TGQjlww7N9QOspt6g==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@unocss/core': 0.46.4
+      unconfig: 0.3.7
     dev: false
 
   /@unocss/core/0.46.4:
@@ -57,6 +73,15 @@ packages:
       '@unocss/preset-mini': 0.46.4
     dev: false
 
+  /defu/6.1.0:
+    resolution: {integrity: sha512-pOFYRTIhoKujrmbTRhcW5lYQLBXw/dlTwfI8IguF1QCDJOcJzNH1w+YFjxqy6BAuJrClTy6MUE8q+oKJ2FLsIw==}
+    dev: false
+
+  /jiti/1.16.0:
+    resolution: {integrity: sha512-L3BJStEf5NAqNuzrpfbN71dp43mYIcBUlCRea/vdyv5dW/AYa1d4bpelko4SHdY3I6eN9Wzyasxirj1/vv5kmg==}
+    hasBin: true
+    dev: false
+
   /lru-cache/7.14.1:
     resolution: {integrity: sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==}
     engines: {node: '>=12'}
@@ -67,6 +92,14 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  /unconfig/0.3.7:
+    resolution: {integrity: sha512-1589b7oGa8ILBYpta7TndM5mLHLzHUqBfhszeZxuUBrjO/RoQ52VGVWsS3w0C0GLNxO9RPmqkf6BmIvBApaRdA==}
+    dependencies:
+      '@antfu/utils': 0.5.2
+      defu: 6.1.0
+      jiti: 1.16.0
+    dev: false
 
   /vscode-jsonrpc/6.0.0:
     resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==}
