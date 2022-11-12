@@ -13,7 +13,8 @@
 		"unocss-language-server": "./bin/index.js"
 	},
 	"scripts": {
-		"compile": "tsc && cd client && tsc"
+		"compile": "tsc && cd client && tsc",
+		"build": "tsc"
 	},
 	"devDependencies": {
 		"@types/node": "^16.11.7",
