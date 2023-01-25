@@ -18,31 +18,24 @@ npm i unocss-language-server -g
 
 ## Usage
 
-You can refer to [my nvim configuration](https://github.com/xna00/nvim)
+[nvim-lspconfig server_configuration](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#unocss)
 ```lua
-local util = require 'lspconfig.util'
-local configs = require 'lspconfig.configs'
-configs['unocss'] = { default_config = {
-  cmd = { 'unocss-language-server', '--stdio' },
-  filetypes = {
-    'html',
-    'javascriptreact',
-    'rescript',
-    'typescriptreact',
-    'vue',
-    'svelte',
-  },
-  on_new_config = function(new_config)
-  end,
+require 'lspconfig'.unocss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { ... },
   root_dir = function(fname)
-    return util.root_pattern('unocss.config.js', 'unocss.config.ts')(fname)
-        or util.find_package_json_ancestor(fname)
-        or util.find_node_modules_ancestor(fname)
-        or util.find_git_ancestor(fname)
-  end,
-} }
+    return require 'lspconfig.util'.root_pattern(...)(fname)
+  end
+}
 ```
-
+If you are using [nvim-cmp](https://github.com/hrsh7th/nvim-cmp), you can add `-` to [trigger_characters](https://github.com/hrsh7th/nvim-cmp/blob/main/doc/cmp.txt#L528).
+```lua
+cmp.setup {
+  sources = { { name = 'nvim_lsp', trigger_characters = { '-' } } }
+}
+```
+Because `@unocss/autocomplete` suggest less before meeting `-`.
 ## TODO
 - [ ] Highlight matched classes
 
