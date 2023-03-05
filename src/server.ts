@@ -37,7 +37,7 @@ connection.onInitialize((params: InitializeParams) => {
   if (roorDir) {
     resolveConfig(roorDir);
   }
-  
+
   const capabilities = params.capabilities;
 
   // Does the client support the `workspace/configuration` request?
@@ -123,7 +123,7 @@ documents.onDidClose((e) => {
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
-documents.onDidChangeContent((change) => {});
+documents.onDidChangeContent((change) => { });
 
 connection.onDidChangeWatchedFiles((_change) => {
   // Monitored files have change in VSCode
@@ -131,6 +131,7 @@ connection.onDidChangeWatchedFiles((_change) => {
 });
 
 // This handler provides the initial list of the completion items.
+connection.console.log('unocss: before add onCompletion listener')
 connection.onCompletion(
   async (
     _textDocumentPosition: TextDocumentPositionParams
@@ -138,17 +139,21 @@ connection.onCompletion(
     // The pass parameter contains the position of the text document in
     // which code complete got requested. For the example we ignore this
     // info and always provide the same completion items.
+    connection.console.log('unocss: onCompletion start')
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const doc = documents.get(_textDocumentPosition.textDocument.uri);
     const content = doc?.getText();
     const cursor = doc?.offsetAt(_textDocumentPosition.position);
+    connection.console.log('unocss: onCompletion get content and cursor')
 
     if (!content || cursor === undefined) {
       return [];
     }
     const result = await getComplete(content, cursor);
-    return result.suggestions.map((s, i) => {
+    connection.console.log('unocss: onCompletion getComplete')
+
+    const ret = result.suggestions.map((s, i) => {
       const resolved = result.resolveReplacement(s[0]);
       return {
         label: s[0],
@@ -163,8 +168,12 @@ connection.onCompletion(
         },
       };
     });
+
+    connection.console.log('unocss: onCompletion return')
+    return ret
   }
 );
+connection.console.log('unocss: after add listener')
 
 // This handler resolves additional information for the item selected in
 // the completion list.
