@@ -150,8 +150,17 @@ connection.onCompletion(
     if (!content || cursor === undefined) {
       return [];
     }
-    const result = await getComplete(content, cursor);
+    let result
+    try {
+      result = await getComplete(content, cursor);
+    } catch (e) {
+      connection.console.log('unocss:' + e.message + e.stack)
+    }
     connection.console.log('unocss: onCompletion getComplete')
+
+    if (!result) {
+      return []
+    }
 
     const ret = result.suggestions.map((s, i) => {
       const resolved = result.resolveReplacement(s[0]);
