@@ -7,6 +7,7 @@ import { CompletionItem } from "vscode-languageserver";
 
 const defaultConfig = {
   presets: [preserUno()],
+  separators: []
 };
 
 const generator = createGenerator({}, defaultConfig);
