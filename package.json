@@ -3,7 +3,7 @@
 	"description": "unocss language server",
 	"author": "xna00",
 	"license": "MIT",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"categories": [],
 	"keywords": [],
 	"packageManager": "pnpm@7.15.0",
