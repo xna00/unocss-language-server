@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../out/server.js')
+import('../out/server.js')

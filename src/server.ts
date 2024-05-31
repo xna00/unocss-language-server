@@ -11,7 +11,7 @@ import {
   InitializeResult,
   Range,
   Hover,
-} from "vscode-languageserver/node";
+  } from "vscode-languageserver/node.js";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
@@ -19,7 +19,7 @@ import {
   resolveCSS,
   resolveCSSByOffset,
   resolveConfig,
-} from "./service";
+} from "./service.js";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
