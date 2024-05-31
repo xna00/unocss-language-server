@@ -5,8 +5,8 @@
 	"license": "MIT",
 	"version": "0.0.10",
 	"categories": [],
+	"type": "module",
 	"keywords": [],
-	"packageManager": "pnpm@7.15.0",
 	"files": [
 		"out",
 		"bin"
@@ -20,16 +20,16 @@
 		"build": "tsc"
 	},
 	"devDependencies": {
-		"@types/node": "^16.11.7",
-		"typescript": "^4.8.4"
+		"@types/node": "^20.12.13",
+		"typescript": "^5.4.5"
 	},
 	"dependencies": {
-		"@unocss/autocomplete": "^0.46.4",
-		"@unocss/config": "^0.46.4",
-		"@unocss/core": "^0.46.4",
-		"@unocss/preset-uno": "^0.46.4",
-		"unconfig": "^0.3.7",
-		"vscode-languageserver": "^7.0.0",
-		"vscode-languageserver-textdocument": "^1.0.4"
+		"@unocss/autocomplete": "^0.60.3",
+		"@unocss/config": "^0.60.3",
+		"@unocss/core": "^0.60.3",
+		"@unocss/preset-uno": "^0.60.3",
+		"unconfig": "^0.3.13",
+		"vscode-languageserver": "^9.0.1",
+		"vscode-languageserver-textdocument": "^1.0.11"
 	}
 }
