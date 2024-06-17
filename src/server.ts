@@ -11,7 +11,8 @@ import {
   InitializeResult,
   Range,
   Hover,
-  } from "vscode-languageserver/node.js";
+  MarkupKind,
+} from "vscode-languageserver/node.js";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
@@ -166,7 +167,7 @@ connection.onCompletion(
       const resolved = result.resolveReplacement(s[0]);
       return {
         label: s[0],
-        kind: CompletionItemKind.Text,
+        kind: CompletionItemKind.Constant,
         data: i,
         textEdit: {
           newText: resolved.replacement,
@@ -189,11 +190,11 @@ connection.console.log('unocss: after add listener')
 connection.onCompletionResolve(
   async (item: CompletionItem): Promise<CompletionItem> => {
     const result = await resolveCSS(item);
-    item.detail = result.css;
-    //item.documentation = {
-    //kind: "markdown",
-    //value: `[https://uno.antfu.me/?s=${item.label}](https://uno.antfu.me/?s=${item.label})`,
-    //};
+    const css = result.css;
+    item.documentation = {
+      value: `\`\`\`css\n${css}\n\`\`\``,
+      kind: MarkupKind.Markdown
+    };
     return item;
   }
 );
