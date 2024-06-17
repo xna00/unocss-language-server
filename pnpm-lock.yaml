@@ -9,17 +9,17 @@ importers:
   .:
     dependencies:
       '@unocss/autocomplete':
-        specifier: ^0.60.3
-        version: 0.60.3
+        specifier: ^0.61.0
+        version: 0.61.0
       '@unocss/config':
-        specifier: ^0.60.3
-        version: 0.60.3
+        specifier: ^0.61.0
+        version: 0.61.0
       '@unocss/core':
-        specifier: ^0.60.3
-        version: 0.60.3
+        specifier: ^0.61.0
+        version: 0.61.0
       '@unocss/preset-uno':
-        specifier: ^0.60.3
-        version: 0.60.3
+        specifier: ^0.61.0
+        version: 0.61.0
       unconfig:
         specifier: ^0.3.13
         version: 0.3.13
@@ -31,8 +31,8 @@ importers:
         version: 1.0.11
     devDependencies:
       '@types/node':
-        specifier: ^20.12.13
-        version: 20.12.13
+        specifier: ^20.14.2
+        version: 20.14.2
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -45,33 +45,33 @@ packages:
   '@jridgewell/sourcemap-codec@1.4.15':
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
 
-  '@types/node@20.12.13':
-    resolution: {integrity: sha512-gBGeanV41c1L171rR7wjbMiEpEI/l5XFQdLLfhr/REwpgDy/4U8y89+i8kRiLzDyZdOkXh+cRaTetUnCYutoXA==}
+  '@types/node@20.14.2':
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
 
-  '@unocss/autocomplete@0.60.3':
-    resolution: {integrity: sha512-kizAXgdteyiriSyHuHSR85ahoVV8ks3Ge2P6lcXEoxP5rO73Pvx38LaRScWFMTDTTBDafApEoSSfjn5820NVrQ==}
+  '@unocss/autocomplete@0.61.0':
+    resolution: {integrity: sha512-fcERPaaQvTSXjPaaZ66nwHWtJ4a8nQQls13F2T5+OdwYoBEiA+wf7KNRmodOaHy3oRz1TNK8InvYBZ90Unf+kA==}
 
-  '@unocss/config@0.60.3':
-    resolution: {integrity: sha512-3RGD7h3bS4qZA/Khcqhn1EgLgyPc85FSz5rubdywHRdHlpY9sdmuGEJahvqSLMN4MmdYQDmqEIEAJjENrdgZeQ==}
+  '@unocss/config@0.61.0':
+    resolution: {integrity: sha512-k8uV4n8eMti4S6BFeAkc9QBXJefDIlPyOWrdKykUMOHLIWVAIS53JixW9FJNgJRw0RVI6B7UR+rOznWwKpORPA==}
     engines: {node: '>=14'}
 
-  '@unocss/core@0.60.3':
-    resolution: {integrity: sha512-4bBX1pavDl2DSCozEII7bxYGT0IkyO7kKlUuCtooTePWyLjf2F7essdzHkJ00EpNR64kkebR9V0lqBMBo07VPw==}
+  '@unocss/core@0.61.0':
+    resolution: {integrity: sha512-Y/Ly3LPIAzOBlWCdKBVzVzIaaWDsf+oWPIUZlaW7DL++WWypVBCghmxXIT5dyuMGXE560Hj92st4AkXfuVdxGQ==}
 
-  '@unocss/extractor-arbitrary-variants@0.60.3':
-    resolution: {integrity: sha512-PnwNwkeAHmbJbrf5XN0xQG1KT1VQEye8neYn5yz1MHnT8Cj2nqjrqoCRGLCLhpOUg3/MNj+bpiA7hGnFbXWaCQ==}
+  '@unocss/extractor-arbitrary-variants@0.61.0':
+    resolution: {integrity: sha512-9ru/UR4kZ1+jGXpMawV9T8kpL54FrJBmWKMuFlDTEDIwtzDyyfLbt/buoXdzKDLmil9hOXH3IH8+dah/OiiDoA==}
 
-  '@unocss/preset-mini@0.60.3':
-    resolution: {integrity: sha512-7en8KBX3lN1Y6eCprbzA1QVfyXZD03B+oAxFXH8QPv5jRIL8Lm8sbXqE+VTsSME/OVp4DnS6LdGtDAm9mvIOSw==}
+  '@unocss/preset-mini@0.61.0':
+    resolution: {integrity: sha512-P+DdMtPtzAQ2aQ1/WWPoO3X/qvky+Fqq4eKXIvbqXOQ9c2oem7/dnsPeT08zzLIqxVJnuykymPwRT85EumS0gg==}
 
-  '@unocss/preset-uno@0.60.3':
-    resolution: {integrity: sha512-PJSR78uaIRTsD9RFSQLwsrGAsjQoW5nWenU4n4GyZeskDsyQVgOcaKtvh+0aYjYdWBa1UvxeUL8Y+m29K4HnAA==}
+  '@unocss/preset-uno@0.61.0':
+    resolution: {integrity: sha512-mkKOra3dQEc3uI7aPIqa3t8MJXlmpLSgGaPfEJK52xkFe991ex6CiUunYMMWbh6ZSzmdxkO31IwQIH9lcmj/Uw==}
 
-  '@unocss/preset-wind@0.60.3':
-    resolution: {integrity: sha512-q7yDJ/SyEkPmPBJvIeHd9Bt50LAu65q7WwKxJYfJkjfJvJUMj6DO8FgPnpeiwBeJh9897m2Ap6zoQ3JqBjPLHQ==}
+  '@unocss/preset-wind@0.61.0':
+    resolution: {integrity: sha512-PooyLVAF4wH9KvW4OKfDxYFuM4qmnlU+Ci6O6RGgVsKyQMq76crRqqK76lbnehg7jOoZJVxmWfQ6k5gT3aQeXQ==}
 
-  '@unocss/rule-utils@0.60.3':
-    resolution: {integrity: sha512-I47/DcKQ2z12W80+Ffth0K6LzNvqcQPYRWk7KwVemVoEiGYamMV8/s+SbB26Fk9KUFjh+Ns/pGAo4iJZo0ueUQ==}
+  '@unocss/rule-utils@0.61.0':
+    resolution: {integrity: sha512-MCdmfhE6Q9HSWjWqi2sx5/nnKyOEhfhoo+pVumHIqkHQICQ/LuKioFf7Y7e5ycqjFE/7dC2hKGZJ8WTMGIOMwA==}
     engines: {node: '>=14'}
 
   defu@6.1.4:
@@ -80,8 +80,8 @@ packages:
   fzf@0.5.2:
     resolution: {integrity: sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q==}
 
-  jiti@1.21.0:
-    resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
+  jiti@1.21.6:
+    resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
 
   lru-cache@10.2.2:
@@ -125,55 +125,55 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.4.15': {}
 
-  '@types/node@20.12.13':
+  '@types/node@20.14.2':
     dependencies:
       undici-types: 5.26.5
 
-  '@unocss/autocomplete@0.60.3':
+  '@unocss/autocomplete@0.61.0':
     dependencies:
       fzf: 0.5.2
       lru-cache: 10.2.2
 
-  '@unocss/config@0.60.3':
+  '@unocss/config@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
+      '@unocss/core': 0.61.0
       unconfig: 0.3.13
 
-  '@unocss/core@0.60.3': {}
+  '@unocss/core@0.61.0': {}
 
-  '@unocss/extractor-arbitrary-variants@0.60.3':
+  '@unocss/extractor-arbitrary-variants@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
+      '@unocss/core': 0.61.0
 
-  '@unocss/preset-mini@0.60.3':
+  '@unocss/preset-mini@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
-      '@unocss/extractor-arbitrary-variants': 0.60.3
-      '@unocss/rule-utils': 0.60.3
+      '@unocss/core': 0.61.0
+      '@unocss/extractor-arbitrary-variants': 0.61.0
+      '@unocss/rule-utils': 0.61.0
 
-  '@unocss/preset-uno@0.60.3':
+  '@unocss/preset-uno@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
-      '@unocss/preset-mini': 0.60.3
-      '@unocss/preset-wind': 0.60.3
-      '@unocss/rule-utils': 0.60.3
+      '@unocss/core': 0.61.0
+      '@unocss/preset-mini': 0.61.0
+      '@unocss/preset-wind': 0.61.0
+      '@unocss/rule-utils': 0.61.0
 
-  '@unocss/preset-wind@0.60.3':
+  '@unocss/preset-wind@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
-      '@unocss/preset-mini': 0.60.3
-      '@unocss/rule-utils': 0.60.3
+      '@unocss/core': 0.61.0
+      '@unocss/preset-mini': 0.61.0
+      '@unocss/rule-utils': 0.61.0
 
-  '@unocss/rule-utils@0.60.3':
+  '@unocss/rule-utils@0.61.0':
     dependencies:
-      '@unocss/core': 0.60.3
+      '@unocss/core': 0.61.0
       magic-string: 0.30.10
 
   defu@6.1.4: {}
 
   fzf@0.5.2: {}
 
-  jiti@1.21.0: {}
+  jiti@1.21.6: {}
 
   lru-cache@10.2.2: {}
 
@@ -187,7 +187,7 @@ snapshots:
     dependencies:
       '@antfu/utils': 0.7.8
       defu: 6.1.4
-      jiti: 1.21.0
+      jiti: 1.21.6
 
   undici-types@5.26.5: {}
 
