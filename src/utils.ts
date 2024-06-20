@@ -183,17 +183,21 @@ export function convertToRGBA(rgbColor: string) {
   const match = rgbColor.replace('rgba', '').replace('rbg', '').replaceAll(/\(|\)/g, '').split(',')
 
   if (match) {
-    const r = Number.parseInt(match[0].trim())
-    const g = Number.parseInt(match[1].trim())
-    const b = Number.parseInt(match[2].trim())
-    const alpha = Number.parseFloat(match[3].trim())
+    try {
+      const r = Number.parseInt(match[0].trim())
+      const g = Number.parseInt(match[1].trim())
+      const b = Number.parseInt(match[2].trim())
+      const alpha = Number.parseFloat(match[3]?.trim() ?? '1')
 
-    return {
-			red: r / 255,
-			green: g / 255,
-			blue: b / 255,
-			alpha
-		}
+      return {
+        red: r / 255,
+        green: g / 255,
+        blue: b / 255,
+        alpha
+      }
+    } catch(_) {
+      return
+    }
   }
 
 	return
