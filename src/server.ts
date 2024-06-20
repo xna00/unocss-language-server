@@ -3,7 +3,6 @@ import {
   TextDocuments,
   ProposedFeatures,
   InitializeParams,
-  DidChangeConfigurationNotification,
   CompletionItem,
   CompletionItemKind,
   TextDocumentPositionParams,
@@ -24,11 +23,8 @@ import {
 } from "./service.js";
 import { SuggestResult } from '@unocss/core';
 
-// Create a connection for the server, using Node's IPC as a transport.
-// Also include all preview / proposed LSP features.
 const connection = createConnection(ProposedFeatures.all);
 
-// Create a simple text document manager.
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 let hasConfigurationCapability = false;
@@ -79,47 +75,6 @@ connection.onInitialize((params: InitializeParams) => {
   return result;
 });
 
-
-// The example settings
-interface ExampleSettings {
-  maxNumberOfProblems: number;
-}
-
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
-
-// Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
-
-connection.onDidChangeConfiguration((change) => {
-  if (hasConfigurationCapability) {
-    // Reset all cached document settings
-    documentSettings.clear();
-  } else {
-    globalSettings = <ExampleSettings>(
-      (change.settings.languageServerExample || defaultSettings)
-    );
-  }
-});
-
-// Only keep settings for open documents
-documents.onDidClose((e) => {
-  documentSettings.delete(e.document.uri);
-});
-
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent((change) => { });
-
-connection.onDidChangeWatchedFiles((_change) => {
-  // Monitored files have change in VSCode
-  connection.console.log("We received an file change event");
-});
-
-// This handler provides the initial list of the completion items.
 connection.console.log('unocss: before add onCompletion listener')
 connection.onCompletion(
   async (
@@ -212,9 +167,5 @@ connection.onDocumentColor(async (args) => {
   })
 })
 
-// Make the text document manager listen on the connection
-// for open, change and close text document events
 documents.listen(connection);
-
-// Listen on the connection
 connection.listen();
