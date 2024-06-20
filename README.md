@@ -12,7 +12,7 @@ A language server for unocss
 * Simple completion
 * Hover
 * Loading config from `root dir`
-* Highlight color
+* Highlight color (use with [mrshmllow/document-color.nvim](https://github.com/mrshmllow/document-color.nvim))
 
 ## Install
 
