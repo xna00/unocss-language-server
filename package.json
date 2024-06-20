@@ -28,7 +28,9 @@
 		"@unocss/autocomplete": "^0.61.0",
 		"@unocss/config": "^0.61.0",
 		"@unocss/core": "^0.61.0",
+		"@unocss/extractor-arbitrary-variants": "^0.61.0",
 		"@unocss/preset-uno": "^0.61.0",
+		"magic-string": "^0.30.10",
 		"unconfig": "^0.3.13",
 		"vscode-languageserver": "^9.0.1",
 		"vscode-languageserver-textdocument": "^1.0.11"

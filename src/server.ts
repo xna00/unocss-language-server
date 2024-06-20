@@ -16,11 +16,13 @@ import {
 
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
+  documentColor,
   getComplete,
   resolveCSS,
   resolveCSSByOffset,
   resolveConfig,
 } from "./service.js";
+import { SuggestResult } from '@unocss/core';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -151,7 +153,7 @@ connection.onCompletion(
     if (!content || cursor === undefined) {
       return [];
     }
-    let result
+    let result: SuggestResult
     try {
       result = await getComplete(content, cursor);
     } catch (e) {
@@ -208,6 +210,21 @@ connection.onHover(async (params): Promise<Hover> => {
     contents: css && `\`\`\`css\n${css}\n\`\`\``,
   };
 });
+
+connection.onDocumentColor(async (args) => {
+  const uri = args.textDocument.uri
+  const doc = documents.get(uri)
+  const colors = await documentColor(doc.getText(), uri)
+  return colors.map(c => {
+    return {
+      color: c.color,
+      range: {
+        start: doc.positionAt(c.range.start),
+        end: doc.positionAt(c.range.end)
+      }
+    }
+  })
+})
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

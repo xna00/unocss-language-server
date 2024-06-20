@@ -4,6 +4,8 @@ import preserUno from "@unocss/preset-uno";
 import { loadConfig } from "@unocss/config";
 import { sourcePluginFactory, sourceObjectFields } from "unconfig/presets";
 import { CompletionItem } from "vscode-languageserver";
+import { getMatchedPositionsFromCode } from './share-common.js';
+import { getColorString } from './utils.js';
 
 const defaultConfig = {
   presets: [preserUno()],
@@ -35,6 +37,28 @@ export function resolveConfig(roorDir: string) {
   });
 }
 
+export const documentColor = async (content: string, id: string) => {
+  const pos = await getMatchedPositionsFromCode(generator, content, id)
+  const ret = (await Promise.all(pos.map(async p => {
+    const [start, end, text] = p;
+    const css = (await generator.generate(text, {
+      preflights: false,
+      safelist: false,
+    })).css
+
+    const color = getColorString(css)
+    if (color) {
+      return {
+        range: {start, end},
+        color
+      }
+    } else {
+      return
+    }
+  }))).filter(p => !!p)
+  return ret
+}
+
 export function getComplete(content: string, cursor: number) {
   return autocomplete.suggestInFile(content, cursor);
 }
@@ -52,3 +76,4 @@ export function resolveCSSByOffset(content: string, cursor: number) {
     safelist: false,
   });
 }
+

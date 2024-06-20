@@ -17,9 +17,15 @@ importers:
       '@unocss/core':
         specifier: ^0.61.0
         version: 0.61.0
+      '@unocss/extractor-arbitrary-variants':
+        specifier: ^0.61.0
+        version: 0.61.0
       '@unocss/preset-uno':
         specifier: ^0.61.0
         version: 0.61.0
+      magic-string:
+        specifier: ^0.30.10
+        version: 0.30.10
       unconfig:
         specifier: ^0.3.13
         version: 0.3.13
