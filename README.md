@@ -6,9 +6,11 @@ A language server for unocss
 
 <img width="200" src="https://raw.githubusercontent.com/xna00/unocss-language-server/main/res/nvim-html.gif">
 
+<img width="200" src="https://raw.githubusercontent.com/xna00/unocss-language-server/main/res/highlight.png">
 * Simple completion
 * Hover
 * Loading config from `root dir`
+* Highlight color
 
 ## Install
 
@@ -36,8 +38,6 @@ cmp.setup {
 }
 ```
 Because `@unocss/autocomplete` suggest less before meeting `-`.
-## TODO
-- [ ] Highlight matched classes
 
 ## Related information
 
