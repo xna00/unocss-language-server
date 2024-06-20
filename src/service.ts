@@ -45,6 +45,7 @@ export const documentColor = async (content: string, id: string) => {
       preflights: false,
       safelist: false,
     })).css
+    console.log(css)
 
     const color = getColorString(css)
     if (color) {

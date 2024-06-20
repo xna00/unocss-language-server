@@ -1,6 +1,7 @@
 import path from 'path'
 import type { UnoGenerator } from '@unocss/core'
 import { toArray } from '@unocss/core'
+import rgba from 'color-rgba'
 
 const remUnitRE = /(-?[\d.]+)rem(\s+!important)?;/
 const matchCssVarNameRE = /var\((?<cssVarName>--[^,|)]+)(?:,(?<fallback>[^)]+))?\)/g
@@ -116,7 +117,9 @@ function getCssVariables(code: string) {
  * @returns The **first** CSS color string (hex, rgb[a], hsl[a]) or `undefined`
  */
 export function getColorString(str: string) {
+  console.log('getColorString str:', str)
   let colorString = str.match(cssColorRE)?.[0] // e.g rgb(248 113 113 / var(--maybe-css-var))
+  console.log('colorString:', colorString)
 
   if (!colorString)
     return
@@ -180,24 +183,17 @@ export function isRejected(result: PromiseSettledResult<unknown>): result is Pro
 
 
 export function convertToRGBA(rgbColor: string) {
-  const match = rgbColor.replace('rgba', '').replace('rbg', '').replaceAll(/\(|\)/g, '').split(',')
+  console.log('rgbColor:', rgbColor)
+  const match = rgba(rgbColor)
 
-  if (match) {
-    try {
-      const r = Number.parseInt(match[0].trim())
-      const g = Number.parseInt(match[1].trim())
-      const b = Number.parseInt(match[2].trim())
-      const alpha = Number.parseFloat(match[3]?.trim() ?? '1')
-
+  if (match?.length === 4) {
+      const [r, g, b, alpha] = match
       return {
         red: r / 255,
         green: g / 255,
         blue: b / 255,
         alpha
       }
-    } catch(_) {
-      return
-    }
   }
 
 	return
