@@ -17,9 +17,18 @@ importers:
       '@unocss/core':
         specifier: ^0.61.0
         version: 0.61.0
+      '@unocss/extractor-arbitrary-variants':
+        specifier: ^0.61.0
+        version: 0.61.0
       '@unocss/preset-uno':
         specifier: ^0.61.0
         version: 0.61.0
+      color-rgba:
+        specifier: ^3.0.0
+        version: 3.0.0
+      magic-string:
+        specifier: ^0.30.10
+        version: 0.30.10
       unconfig:
         specifier: ^0.3.13
         version: 0.3.13
@@ -73,6 +82,19 @@ packages:
   '@unocss/rule-utils@0.61.0':
     resolution: {integrity: sha512-MCdmfhE6Q9HSWjWqi2sx5/nnKyOEhfhoo+pVumHIqkHQICQ/LuKioFf7Y7e5ycqjFE/7dC2hKGZJ8WTMGIOMwA==}
     engines: {node: '>=14'}
+
+  color-name@2.0.0:
+    resolution: {integrity: sha512-SbtvAMWvASO5TE2QP07jHBMXKafgdZz8Vrsrn96fiL+O92/FN/PLARzUW5sKt013fjAprK2d2iCn2hk2Xb5oow==}
+    engines: {node: '>=12.20'}
+
+  color-parse@2.0.2:
+    resolution: {integrity: sha512-eCtOz5w5ttWIUcaKLiktF+DxZO1R9KLNY/xhbV6CkhM7sR3GhVghmt6X6yOnzeaM24po+Z9/S1apbXMwA3Iepw==}
+
+  color-rgba@3.0.0:
+    resolution: {integrity: sha512-PPwZYkEY3M2THEHHV6Y95sGUie77S7X8v+h1r6LSAPF3/LL2xJ8duUXSrkic31Nzc4odPwHgUbiX/XuTYzQHQg==}
+
+  color-space@2.0.1:
+    resolution: {integrity: sha512-nKqUYlo0vZATVOFHY810BSYjmCARrG7e5R3UE3CQlyjJTvv5kSSmPG1kzm/oDyyqjehM+lW1RnEt9It9GNa5JA==}
 
   defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
@@ -168,6 +190,19 @@ snapshots:
     dependencies:
       '@unocss/core': 0.61.0
       magic-string: 0.30.10
+
+  color-name@2.0.0: {}
+
+  color-parse@2.0.2:
+    dependencies:
+      color-name: 2.0.0
+
+  color-rgba@3.0.0:
+    dependencies:
+      color-parse: 2.0.2
+      color-space: 2.0.1
+
+  color-space@2.0.1: {}
 
   defu@6.1.4: {}
 
