@@ -1,15 +1,15 @@
 import {
+  type InitializeParams,
+  type CompletionItem,
+  type TextDocumentPositionParams,
+  type InitializeResult,
+  type Hover,
   createConnection,
   TextDocuments,
   ProposedFeatures,
-  InitializeParams,
-  CompletionItem,
   CompletionItemKind,
-  TextDocumentPositionParams,
   TextDocumentSyncKind,
-  InitializeResult,
   Range,
-  Hover,
   MarkupKind,
 } from "vscode-languageserver/node.js";
 
@@ -21,7 +21,7 @@ import {
   resolveCSSByOffset,
   resolveConfig,
 } from "./service.js";
-import { SuggestResult } from '@unocss/core';
+import type { SuggestResult } from "@unocss/core";
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -32,11 +32,6 @@ let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
-  const roorDir = params.workspaceFolders[0].name;
-  if (roorDir) {
-    resolveConfig(roorDir);
-  }
-
   const capabilities = params.capabilities;
 
   // Does the client support the `workspace/configuration` request?
@@ -47,11 +42,8 @@ connection.onInitialize((params: InitializeParams) => {
   hasWorkspaceFolderCapability = !!(
     capabilities.workspace && !!capabilities.workspace.workspaceFolders
   );
-  hasDiagnosticRelatedInformationCapability = !!(
-    capabilities.textDocument &&
-    capabilities.textDocument.publishDiagnostics &&
-    capabilities.textDocument.publishDiagnostics.relatedInformation
-  );
+  hasDiagnosticRelatedInformationCapability =
+    !!capabilities.textDocument?.publishDiagnostics?.relatedInformation;
 
   const result: InitializeResult = {
     capabilities: {
@@ -72,38 +64,52 @@ connection.onInitialize((params: InitializeParams) => {
       },
     };
   }
+
+  let rootDir = "";
+  if (hasWorkspaceFolderCapability && params.workspaceFolders[0]) {
+    rootDir = params.workspaceFolders[0].uri || params.workspaceFolders[0].name;
+  }
+
+  if (!rootDir && params.rootUri) {
+    rootDir = params.rootUri;
+  }
+
+  if (!rootDir) {
+    resolveConfig(rootDir);
+  }
+
   return result;
 });
 
-connection.console.log('unocss: before add onCompletion listener')
+connection.console.log("unocss: before add onCompletion listener");
 connection.onCompletion(
   async (
-    _textDocumentPosition: TextDocumentPositionParams
+    _textDocumentPosition: TextDocumentPositionParams,
   ): Promise<CompletionItem[]> => {
     // The pass parameter contains the position of the text document in
     // which code complete got requested. For the example we ignore this
     // info and always provide the same completion items.
-    connection.console.log('unocss: onCompletion start')
+    connection.console.log("unocss: onCompletion start");
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const doc = documents.get(_textDocumentPosition.textDocument.uri);
     const content = doc?.getText();
     const cursor = doc?.offsetAt(_textDocumentPosition.position);
-    connection.console.log('unocss: onCompletion get content and cursor')
+    connection.console.log("unocss: onCompletion get content and cursor");
 
     if (!content || cursor === undefined) {
       return [];
     }
-    let result: SuggestResult
+    let result: SuggestResult;
     try {
       result = await getComplete(content, cursor);
     } catch (e) {
-      connection.console.log('unocss:' + e.message + e.stack)
+      connection.console.log(`unocss:${e.message}${e.stack}`);
     }
-    connection.console.log('unocss: onCompletion getComplete')
+    connection.console.log("unocss: onCompletion getComplete");
 
     if (!result) {
-      return []
+      return [];
     }
 
     const ret = result.suggestions.map((s, i) => {
@@ -116,17 +122,17 @@ connection.onCompletion(
           newText: resolved.replacement,
           range: Range.create(
             doc.positionAt(resolved.start),
-            doc.positionAt(resolved.end)
+            doc.positionAt(resolved.end),
           ),
         },
       };
     });
 
-    connection.console.log('unocss: onCompletion return')
-    return ret
-  }
+    connection.console.log("unocss: onCompletion return");
+    return ret;
+  },
 );
-connection.console.log('unocss: after add listener')
+connection.console.log("unocss: after add listener");
 
 // This handler resolves additional information for the item selected in
 // the completion list.
@@ -136,10 +142,10 @@ connection.onCompletionResolve(
     const css = result.css;
     item.documentation = {
       value: `\`\`\`css\n${css}\n\`\`\``,
-      kind: MarkupKind.Markdown
+      kind: MarkupKind.Markdown,
     };
     return item;
-  }
+  },
 );
 
 connection.onHover(async (params): Promise<Hover> => {
@@ -153,19 +159,51 @@ connection.onHover(async (params): Promise<Hover> => {
 });
 
 connection.onDocumentColor(async (args) => {
-  const uri = args.textDocument.uri
-  const doc = documents.get(uri)
-  const colors = await documentColor(doc.getText(), uri)
-  return colors.map(c => {
+  const uri = args.textDocument.uri;
+  const doc = documents.get(uri);
+  const colors = await documentColor(doc.getText(), uri);
+  return colors.map((c) => {
     return {
       color: c.color,
       range: {
         start: doc.positionAt(c.range.start),
-        end: doc.positionAt(c.range.end)
-      }
-    }
-  })
-})
+        end: doc.positionAt(c.range.end),
+      },
+    };
+  });
+});
+
+connection.onColorPresentation(async (params) => {
+  const doc = documents.get(params.textDocument.uri);
+  const color = params.color;
+
+  // Convert the color to various formats
+  const rgb = `rgb(${Math.round(color.red * 255)} ${Math.round(color.green * 255)} ${Math.round(color.blue * 255)}${color.alpha !== 1 ? ` / ${color.alpha}` : ""})`;
+  const hex = `#${Math.round(color.red * 255)
+    .toString(16)
+    .padStart(2, "0")}${Math.round(color.green * 255)
+    .toString(16)
+    .padStart(2, "0")}${Math.round(color.blue * 255)
+    .toString(16)
+    .padStart(2, "0")}`;
+
+  return [
+    {
+      label: rgb,
+      textEdit: {
+        range: params.range,
+        newText: rgb,
+      },
+    },
+    {
+      label: hex,
+      textEdit: {
+        range: params.range,
+        newText: hex,
+      },
+    },
+  ];
+});
 
 documents.listen(connection);
 connection.listen();

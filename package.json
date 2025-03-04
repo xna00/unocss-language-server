@@ -1,39 +1,39 @@
 {
-	"name": "unocss-language-server",
-	"description": "unocss language server",
-	"author": "xna00",
-	"license": "MIT",
-	"version": "0.1.5",
-	"categories": [],
-	"type": "module",
-	"keywords": [],
-	"packageManager": "pnpm@9.1.4",
-	"files": [
-		"out",
-		"bin"
-	],
-	"main": "./out/server.js",
-	"bin": {
-		"unocss-language-server": "./bin/index.js"
-	},
-	"scripts": {
-		"compile": "tsc && cd client && tsc",
-		"build": "tsc"
-	},
-	"devDependencies": {
-		"@types/node": "^20.14.2",
-		"typescript": "^5.4.5"
-	},
-	"dependencies": {
-		"@unocss/autocomplete": "^0.61.0",
-		"@unocss/config": "^0.61.0",
-		"@unocss/core": "^0.61.0",
-		"@unocss/extractor-arbitrary-variants": "^0.61.0",
-		"@unocss/preset-uno": "^0.61.0",
-		"color-rgba": "^3.0.0",
-		"magic-string": "^0.30.10",
-		"unconfig": "^0.3.13",
-		"vscode-languageserver": "^9.0.1",
-		"vscode-languageserver-textdocument": "^1.0.11"
-	}
+  "name": "@bajrangcoder/unocss-language-server",
+  "description": "unocss language server",
+  "author": "Raunak Raj",
+  "license": "MIT",
+  "version": "0.1.0",
+  "categories": [],
+  "type": "module",
+  "keywords": [],
+  "packageManager": "pnpm@9.1.4",
+  "files": [
+    "out",
+    "bin"
+  ],
+  "main": "./out/server.js",
+  "bin": {
+    "unocss-language-server": "./bin/index.js"
+  },
+  "scripts": {
+    "compile": "tsc && cd client && tsc",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.23",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@unocss/autocomplete": "^0.61.9",
+    "@unocss/config": "^0.61.9",
+    "@unocss/core": "^0.61.9",
+    "@unocss/extractor-arbitrary-variants": "^0.61.9",
+    "@unocss/preset-uno": "^0.61.9",
+    "color-rgba": "^3.0.0",
+    "magic-string": "^0.30.17",
+    "unconfig": "^0.3.13",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  }
 }
