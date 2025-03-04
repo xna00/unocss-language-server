@@ -12,7 +12,7 @@ import {
   Range,
   MarkupKind,
 } from "vscode-languageserver/node.js";
-
+import beautify from "js-beautify";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
   documentColor,
@@ -154,11 +154,12 @@ connection.onHover(async (params): Promise<Hover> => {
   const cursor = doc?.offsetAt(params.position);
   const css = (await resolveCSSByOffset(content, cursor)).css;
   return {
-    contents: css && `\`\`\`css\n${css}\n\`\`\``,
+    contents: css && `\`\`\`css\n${beautify.css(css)}\n\`\`\``,
   };
 });
 
 connection.onDocumentColor(async (args) => {
+  connection.console.log(" document color request");
   const uri = args.textDocument.uri;
   const doc = documents.get(uri);
   const colors = await documentColor(doc.getText(), uri);
@@ -171,38 +172,6 @@ connection.onDocumentColor(async (args) => {
       },
     };
   });
-});
-
-connection.onColorPresentation(async (params) => {
-  const doc = documents.get(params.textDocument.uri);
-  const color = params.color;
-
-  // Convert the color to various formats
-  const rgb = `rgb(${Math.round(color.red * 255)} ${Math.round(color.green * 255)} ${Math.round(color.blue * 255)}${color.alpha !== 1 ? ` / ${color.alpha}` : ""})`;
-  const hex = `#${Math.round(color.red * 255)
-    .toString(16)
-    .padStart(2, "0")}${Math.round(color.green * 255)
-    .toString(16)
-    .padStart(2, "0")}${Math.round(color.blue * 255)
-    .toString(16)
-    .padStart(2, "0")}`;
-
-  return [
-    {
-      label: rgb,
-      textEdit: {
-        range: params.range,
-        newText: rgb,
-      },
-    },
-    {
-      label: hex,
-      textEdit: {
-        range: params.range,
-        newText: hex,
-      },
-    },
-  ];
 });
 
 documents.listen(connection);
