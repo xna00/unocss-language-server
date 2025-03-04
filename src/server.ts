@@ -13,6 +13,7 @@ import {
   MarkupKind,
 } from "vscode-languageserver/node.js";
 import beautify from "js-beautify";
+import { getColorString } from "./utils.js";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
   documentColor,
@@ -141,9 +142,15 @@ connection.onCompletionResolve(
     const result = await resolveCSS(item);
     const css = result.css;
     item.documentation = {
-      value: `\`\`\`css\n${css}\n\`\`\``,
+      value: `\`\`\`css\n${beautify.css(css)}\n\`\`\``,
       kind: MarkupKind.Markdown,
     };
+    const color = getColorString(css);
+    if (color) {
+      item.kind = CompletionItemKind.Color;
+      item.detail = `rgba(${color.red * 255}, ${color.green * 255}, ${color.blue * 255}, ${color.alpha})`;
+    }
+
     return item;
   },
 );

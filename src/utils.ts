@@ -129,9 +129,7 @@ function getCssVariables(code: string) {
  * @returns The **first** CSS color string (hex, rgb[a], hsl[a]) or `undefined`
  */
 export function getColorString(str: string) {
-  console.log("getColorString str:", str);
   let colorString = str.match(cssColorRE)?.[0]; // e.g rgb(248 113 113 / var(--maybe-css-var))
-  console.log("colorString:", colorString);
 
   if (!colorString) return;
 
