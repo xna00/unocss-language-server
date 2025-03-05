@@ -12,8 +12,6 @@ const defaultConfig = {
   separators: []
 };
 
-const generator = createGenerator({}, defaultConfig);
-let autocomplete = createAutocomplete(generator);
 
 export function resolveConfig(roorDir: string) {
   return loadConfig(process.cwd(), roorDir, [
@@ -30,7 +28,9 @@ export function resolveConfig(roorDir: string) {
       files: "nuxt.config",
       fields: "unocss",
     }),
-  ]).then((result) => {
+  ]).then(async (result) => {   
+    const generator = await createGenerator({}, defaultConfig);
+    let autocomplete = createAutocomplete(generator);
     generator.setConfig(result.config, defaultConfig);
     autocomplete = createAutocomplete(generator);
     return generator.config;
@@ -38,6 +38,7 @@ export function resolveConfig(roorDir: string) {
 }
 
 export const documentColor = async (content: string, id: string) => {
+  const generator = await createGenerator({}, defaultConfig);
   const pos = await getMatchedPositionsFromCode(generator, content, id)
   const ret = (await Promise.all(pos.map(async p => {
     const [start, end, text] = p;
@@ -60,18 +61,22 @@ export const documentColor = async (content: string, id: string) => {
   return ret
 }
 
-export function getComplete(content: string, cursor: number) {
+export async function getComplete(content: string, cursor: number) {
+  const generator = createGenerator({}, defaultConfig);
+  const autocomplete = createAutocomplete(generator);
   return autocomplete.suggestInFile(content, cursor);
 }
 
-export function resolveCSS(item: CompletionItem) {
+export async function resolveCSS(item: CompletionItem) {
+  const generator = await createGenerator({}, defaultConfig);
   return generator.generate(item.label, {
     preflights: false,
     safelist: false,
   });
 }
 
-export function resolveCSSByOffset(content: string, cursor: number) {
+export async function resolveCSSByOffset(content: string, cursor: number) {
+  const generator = await createGenerator({}, defaultConfig);
   return generator.generate(searchUsageBoundary(content, cursor).content, {
     preflights: false,
     safelist: false,
