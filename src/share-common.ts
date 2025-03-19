@@ -4,7 +4,7 @@ import MagicString from 'magic-string'
 import { arbitraryPropertyRE, quotedArbitraryValuesRE } from '@unocss/extractor-arbitrary-variants'
 
 // https://github.com/dsblv/string-replace-async/blob/main/index.js
-export function replaceAsync(string: string, searchValue: RegExp, replacer: (...args: string[]) => Promise<string>) {
+export async function replaceAsync(string: string, searchValue: RegExp, replacer: (...args: string[]) => Promise<string>) {
   try {
     if (typeof replacer === 'function') {
       const values: Promise<string>[] = []

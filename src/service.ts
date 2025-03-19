@@ -1,6 +1,6 @@
 import { createGenerator } from "@unocss/core";
 import { createAutocomplete, searchUsageBoundary } from "@unocss/autocomplete";
-import preserUno from "@unocss/preset-uno";
+import presetWind3 from "@unocss/preset-wind3";
 import { loadConfig } from "@unocss/config";
 import { sourcePluginFactory, sourceObjectFields } from "unconfig/presets";
 import { CompletionItem } from "vscode-languageserver";
@@ -8,14 +8,14 @@ import { getMatchedPositionsFromCode } from './share-common.js';
 import { getColorString } from './utils.js';
 
 const defaultConfig = {
-  presets: [preserUno()],
+  presets: [presetWind3()],
   separators: []
 };
 
-const generator = createGenerator({}, defaultConfig);
+const generator = await createGenerator({}, defaultConfig);
 let autocomplete = createAutocomplete(generator);
 
-export function resolveConfig(roorDir: string) {
+export async function resolveConfig(roorDir: string) {
   return loadConfig(process.cwd(), roorDir, [
     sourcePluginFactory({
       files: ["vite.config", "svelte.config", "iles.config"],
@@ -30,8 +30,8 @@ export function resolveConfig(roorDir: string) {
       files: "nuxt.config",
       fields: "unocss",
     }),
-  ]).then((result) => {
-    generator.setConfig(result.config, defaultConfig);
+  ]).then(async (result) => {
+    await generator.setConfig(result.config, defaultConfig);
     autocomplete = createAutocomplete(generator);
     return generator.config;
   });
