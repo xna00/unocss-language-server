@@ -11,16 +11,15 @@ import {
   Range,
   Hover,
   MarkupKind,
-} from "vscode-languageserver/node.js";
-
-import { TextDocument } from "vscode-languageserver-textdocument";
+} from 'vscode-languageserver/node.js';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import {
   documentColor,
   getComplete,
   resolveCSS,
   resolveCSSByOffset,
   resolveConfig,
-} from "./service.js";
+} from './service.js';
 import { SuggestResult } from '@unocss/core';
 
 const connection = createConnection(ProposedFeatures.all);
@@ -32,11 +31,6 @@ let hasWorkspaceFolderCapability = false;
 let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
-  const roorDir = params.workspaceFolders[0].name;
-  if (roorDir) {
-    resolveConfig(roorDir);
-  }
-
   const capabilities = params.capabilities;
 
   // Does the client support the `workspace/configuration` request?
@@ -44,9 +38,11 @@ connection.onInitialize((params: InitializeParams) => {
   hasConfigurationCapability = !!(
     capabilities.workspace && !!capabilities.workspace.configuration
   );
+
   hasWorkspaceFolderCapability = !!(
     capabilities.workspace && !!capabilities.workspace.workspaceFolders
   );
+
   hasDiagnosticRelatedInformationCapability = !!(
     capabilities.textDocument &&
     capabilities.textDocument.publishDiagnostics &&
@@ -65,6 +61,7 @@ connection.onInitialize((params: InitializeParams) => {
       colorProvider: true,
     },
   };
+
   if (hasWorkspaceFolderCapability) {
     result.capabilities.workspace = {
       workspaceFolders: {
@@ -72,10 +69,27 @@ connection.onInitialize((params: InitializeParams) => {
       },
     };
   }
+
+  let rootDir = '';
+
+  // check for the worspace capability and if the workspace folders are available
+  if (hasWorkspaceFolderCapability && params.workspaceFolders[0]) {
+    rootDir = params.workspaceFolders[0].uri || params.workspaceFolders[0].name;
+  }
+
+  // otherwise we'll check for rootUri
+  if (!rootDir && params.rootUri) {
+    rootDir = params.rootUri;
+  }
+
+  if (rootDir) {
+    resolveConfig(rootDir);
+  }
+
   return result;
 });
 
-connection.console.log('unocss: before add onCompletion listener')
+connection.console.log('unocss: before add onCompletion listener');
 connection.onCompletion(
   async (
     _textDocumentPosition: TextDocumentPositionParams
@@ -83,27 +97,27 @@ connection.onCompletion(
     // The pass parameter contains the position of the text document in
     // which code complete got requested. For the example we ignore this
     // info and always provide the same completion items.
-    connection.console.log('unocss: onCompletion start')
+    connection.console.log('unocss: onCompletion start');
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const doc = documents.get(_textDocumentPosition.textDocument.uri);
     const content = doc?.getText();
     const cursor = doc?.offsetAt(_textDocumentPosition.position);
-    connection.console.log('unocss: onCompletion get content and cursor')
+    connection.console.log('unocss: onCompletion get content and cursor');
 
     if (!content || cursor === undefined) {
       return [];
     }
-    let result: SuggestResult
+    let result: SuggestResult;
     try {
       result = await getComplete(content, cursor);
     } catch (e) {
-      connection.console.log('unocss:' + e.message + e.stack)
+      connection.console.log('unocss:' + e.message + e.stack);
     }
-    connection.console.log('unocss: onCompletion getComplete')
+    connection.console.log('unocss: onCompletion getComplete');
 
     if (!result) {
-      return []
+      return [];
     }
 
     const ret = result.suggestions.map((s, i) => {
@@ -122,11 +136,11 @@ connection.onCompletion(
       };
     });
 
-    connection.console.log('unocss: onCompletion return')
-    return ret
+    connection.console.log('unocss: onCompletion return');
+    return ret;
   }
 );
-connection.console.log('unocss: after add listener')
+connection.console.log('unocss: after add listener');
 
 // This handler resolves additional information for the item selected in
 // the completion list.
@@ -136,7 +150,7 @@ connection.onCompletionResolve(
     const css = result.css;
     item.documentation = {
       value: `\`\`\`css\n${css}\n\`\`\``,
-      kind: MarkupKind.Markdown
+      kind: MarkupKind.Markdown,
     };
     return item;
   }
@@ -153,19 +167,19 @@ connection.onHover(async (params): Promise<Hover> => {
 });
 
 connection.onDocumentColor(async (args) => {
-  const uri = args.textDocument.uri
-  const doc = documents.get(uri)
-  const colors = await documentColor(doc.getText(), uri)
-  return colors.map(c => {
+  const uri = args.textDocument.uri;
+  const doc = documents.get(uri);
+  const colors = await documentColor(doc.getText(), uri);
+  return colors.map((c) => {
     return {
       color: c.color,
       range: {
         start: doc.positionAt(c.range.start),
-        end: doc.positionAt(c.range.end)
-      }
-    }
-  })
-})
+        end: doc.positionAt(c.range.end),
+      },
+    };
+  });
+});
 
 documents.listen(connection);
 connection.listen();
