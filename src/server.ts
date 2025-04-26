@@ -73,7 +73,7 @@ connection.onInitialize((params: InitializeParams) => {
   let rootDir = '';
 
   // check for the worspace capability and if the workspace folders are available
-  if (hasWorkspaceFolderCapability && params.workspaceFolders[0]) {
+  if (hasWorkspaceFolderCapability && params.workspaceFolders && params.workspaceFolders[0]) {
     rootDir = params.workspaceFolders[0].uri || params.workspaceFolders[0].name;
   }
 
